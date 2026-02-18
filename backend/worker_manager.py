@@ -13,7 +13,7 @@ log = logging.getLogger(__name__)
 class WorkerManager:
     def __init__(self, num_workers: int = 2):
         self.num_workers = num_workers
-        self.workspace_root = "/root/workspaces"
+        self.workspace_root = "/home/ccuser/workspaces"
         
         # Worker 状态表（内存）
         self.workers: Dict[int, dict] = {}
@@ -51,7 +51,7 @@ class WorkerManager:
     async def get_worktree(self, worker_id: int, project: str) -> str:
         """获取或创建 worker 对应的 worktree"""
         # 非 Git 项目或无项目配置时，使用临时工作目录
-        work_dir = f"/root/workspaces/worker-{worker_id}"
+        work_dir = f"/home/ccuser/workspaces/worker-{worker_id}"
         os.makedirs(work_dir, exist_ok=True)
         
         self.workers[worker_id]["worktree_path"] = work_dir
